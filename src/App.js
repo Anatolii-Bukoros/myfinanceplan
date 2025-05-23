@@ -1,101 +1,49 @@
-import React, { useState } from 'react';
-import './App.css';
+import React, { useState } from 'react'; import './App.css'; import monoLogo from './logos/mono.png'; import privatLogo from './logos/privat.png'; import pumpLogo from './logos/pumb.png'; import uklonLogo from './logos/uklon.png'; import cashLogo from './logos/cash.png'; import boltLogo from './logos/bolt.png';
 
-function App() {
-  const [mono, setMono] = useState('');
-  const [privat, setPrivat] = useState('');
-  const [pump, setPump] = useState('');
-  const [uklon, setUklon] = useState('');
-  const [cash, setCash] = useState('');
-  const [bolt, setBolt] = useState('');
+const App = () => { const [values, setValues] = useState({ mono: '', privat: '', pump: '', uklon: '', cash: '', bolt: '' });
 
-  const total =
-    (parseFloat(mono) || 0) +
-    (parseFloat(privat) || 0) +
-    (parseFloat(pump) || 0) +
-    (parseFloat(uklon) || 0) +
-    (parseFloat(cash) || 0) +
-    (parseFloat(bolt) || 0);
+const handleChange = (e) => { const { name, value } = e.target; const numericValue = value.replace(/^0+(?!$)/, '').replace(/[^0-9]/g, ''); setValues((prevValues) => ({ ...prevValues, [name]: numericValue })); };
 
-  return (
-    <div className="container">
-      <h1>Мій фінансовий план</h1>
+const total = Object.values(values).reduce((acc, val) => acc + parseFloat(val || 0), 0).toFixed(2);
 
-      <div className="card">
-        <img src="/logos/mono.png" alt="Monobank" className="logo" />
-        <input
-          className="input"
-          type="number"
-          value={mono}
-          onChange={(e) => setMono(e.target.value.replace(/^0+(?=\d)/, ''))}
-          placeholder="0"
-        />
-      </div>
+return ( <div className="app"> <div className="container"> <h1>Мій фінансовий план</h1>
 
-      <div className="card">
-        <img src="/logos/privat.png" alt="PrivatBank" className="logo" />
-        <input
-          className="input"
-          type="number"
-          value={privat}
-          onChange={(e) => setPrivat(e.target.value.replace(/^0+(?=\d)/, ''))}
-          placeholder="0"
-        />
-      </div>
-
-      <div className="card">
-        <img src="/logos/pumb.png" alt="PUMB" className="logo" />
-        <input
-          className="input"
-          type="number"
-          value={pump}
-          onChange={(e) => setPump(e.target.value.replace(/^0+(?=\d)/, ''))}
-          placeholder="0"
-        />
-      </div>
-
-      <div className="card">
-        <img src="/logos/uklon.png" alt="Uklon" className="logo uklon" />
-        <input
-          className="input"
-          type="number"
-          value={uklon}
-          onChange={(e) => setUklon(e.target.value.replace(/^0+(?=\d)/, ''))}
-          placeholder="0"
-        />
-      </div>
-
-      <div className="card">
-        <img src="/logos/cash.png" alt="Cash" className="logo" />
-        <input
-          className="input"
-          type="number"
-          value={cash}
-          onChange={(e) => setCash(e.target.value.replace(/^0+(?=\d)/, ''))}
-          placeholder="0"
-        />
-      </div>
-
-      <div className="card">
-        <img src="/logos/bolt.png" alt="Bolt" className="logo bolt" />
-        <input
-          className="input"
-          type="number"
-          value={bolt}
-          onChange={(e) => setBolt(e.target.value.replace(/^0+(?=\d)/, ''))}
-          placeholder="0"
-        />
-      </div>
-
-      <div className="total">Загальна сума: {total.toFixed(2)} грн</div>
+<div className="input-row">
+      <img src={monoLogo} alt="Monobank" className="logo" />
+      <input type="text" name="mono" value={values.mono} onChange={handleChange} />
     </div>
-  );
-}
+
+    <div className="input-row">
+      <img src={privatLogo} alt="PrivatBank" className="logo" />
+      <input type="text" name="privat" value={values.privat} onChange={handleChange} />
+    </div>
+
+    <div className="input-row">
+      <img src={pumpLogo} alt="PUMB" className="logo" />
+      <input type="text" name="pump" value={values.pump} onChange={handleChange} />
+    </div>
+
+    <div className="input-row">
+      <img src={uklonLogo} alt="Uklon" className="logo small-logo" />
+      <input type="text" name="uklon" value={values.uklon} onChange={handleChange} />
+    </div>
+
+    <div className="input-row">
+      <img src={cashLogo} alt="Cash" className="logo" />
+      <input type="text" name="cash" value={values.cash} onChange={handleChange} />
+    </div>
+
+    <div className="input-row">
+      <img src={boltLogo} alt="Bolt" className="logo small-logo" />
+      <input type="text" name="bolt" value={values.bolt} onChange={handleChange} />
+    </div>
+
+    <h2>Загальна сума: {total} грн</h2>
+  </div>
+</div>
+
+); };
 
 export default App;
-
-
-Оновив App.js: тепер при введенні нулі автоматично прибираються (наприклад, «0500» перетвориться на «500»). Перевір — тепер має бути ок.
-
 
 
