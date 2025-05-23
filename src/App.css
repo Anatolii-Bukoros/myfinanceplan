@@ -6,7 +6,9 @@ h1 { text-align: center; margin-bottom: 24px; font-size: 24px; }
 
 .wallet { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
 
-.wallet-logo { width: 40px; height: 40px; object-fit: contain; flex-shrink: 0; }
+.wallet-logo { height: 40px; width: auto; max-width: 60px; object-fit: contain; flex-shrink: 0; background-color: transparent; border-radius: 4px; }
+
+.wallet-logo[src*='uklon'], .wallet-logo[src*='bolt'] { background-color: #ffffff; padding: 4px; }
 
 input[type='number'] { flex: 1; padding: 8px 12px; font-size: 16px; border: none; border-radius: 6px; background-color: #3a3a3a; color: #ffffff; outline: none; }
 
