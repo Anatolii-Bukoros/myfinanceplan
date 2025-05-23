@@ -1,4 +1,4 @@
-
+/* App.css */
 
 :root { --bg: #121212; --card-bg: #1e1e1e; --text: #ffffff; --input-bg: #2c2c2c; --input-border: #555; }
 
@@ -10,9 +10,9 @@ h1 { font-size: 26px; margin-bottom: 20px; text-align: center; }
 
 .card { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
 
-.logo { height: 42px; width: auto; border-radius: 6px; }
+.logo { height: 42px; width: 42px; border-radius: 6px; object-fit: contain; }
 
-.logo.uklon, .logo.bolt { height: 34px; }
+.logo.uklon, .logo.bolt { height: 36px; width: 36px; }
 
 .input { flex: 1; padding: 8px 12px; border: 1px solid var(--input-border); background: var(--input-bg); color: var(--text); border-radius: 6px; font-size: 16px; }
 
@@ -20,5 +20,5 @@ h1 { font-size: 26px; margin-bottom: 20px; text-align: center; }
 
 .total { margin-top: 30px; text-align: center; font-weight: bold; font-size: 20px; }
 
-@media (max-width: 480px) { .container { margin: 10px; padding: 16px; } .logo { height: 36px; } .logo.uklon, .logo.bolt { height: 30px; } .input { font-size: 15px; } }
+@media (max-width: 480px) { .container { margin: 10px; padding: 16px; } .logo { height: 36px; width: 36px; } .logo.uklon, .logo.bolt { height: 30px; width: 30px; } .input { font-size: 15px; } }
 
