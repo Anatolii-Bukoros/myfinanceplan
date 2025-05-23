@@ -8,7 +8,8 @@ const handleChange = (e, name) => { const val = e.target.value; if (/^\d*.?\d{0,
 
 const getTotal = () => { return Object.values(values) .map(val => parseFloat(val) || 0) .reduce((acc, num) => acc + num, 0) .toFixed(2); };
 
-return ( <div className="container"> <h1>Мій фінансовий план</h1> {accounts.map(account => ( <div className="row" key={account.name}> <img src={process.env.PUBLIC_URL + "/logos/" + account.icon} alt={account.name} className="logo" /> <input type="text" inputMode="decimal" pattern="^\d*\.?\d{0,2}$" placeholder="" value={values[account.name]} onChange={(e) => handleChange(e, account.name)} /> </div> ))} <h2>Загальна сума: {getTotal()} грн</h2> </div> ); }
+return ( <div className="container"> <h1>Мій фінансовий план</h1> {accounts.map(account => ( <div className="row" key={account.name}> <div className="logo-wrapper"> <img src={process.env.PUBLIC_URL + "/logos/" + account.icon} alt={account.name} className="logo" width="40" height="40" /> </div> <input type="text" inputMode="decimal" pattern="^\d*\.?\d{0,2}$" placeholder="" value={values[account.name]} onChange={(e) => handleChange(e, account.name)} /> </div> ))} <h2>Загальна сума: {getTotal()} грн</h2> </div> ); }
 
 export default App;
+
 
