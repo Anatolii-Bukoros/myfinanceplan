@@ -1,15 +1,14 @@
-// App.js import React, { useState } from 'react'; import './App.css'; import monobankLogo from './logos/monobank.png'; import privatLogo from './logos/privat.png'; import pumpLogo from './logos/pumb.png'; import uklonLogo from './logos/uklon.png'; import cashLogo from './logos/cash.png'; import boltLogo from './logos/bolt.png';
+import React, { useState } from "react"; import "./App.css";
 
-const sources = [ { name: 'Monobank', key: 'monobank', logo: monobankLogo }, { name: 'PrivatBank', key: 'privat', logo: privatLogo }, { name: 'PUMB', key: 'pump', logo: pumpLogo }, { name: 'Uklon', key: 'uklon', logo: uklonLogo }, { name: 'Cash', key: 'cash', logo: cashLogo }, { name: 'Bolt', key: 'bolt', logo: boltLogo }, ];
+const accounts = [ { name: "Monobank", icon: "monobank.png" }, { name: "PrivatBank", icon: "privat.png" }, { name: "PUMB", icon: "pumb.png" }, { name: "Uklon", icon: "uklon.png" }, { name: "Cash", icon: "cash.png" }, { name: "Bolt", icon: "bolt.png" } ];
 
-function App() { const [balances, setBalances] = useState({ monobank: '', privat: '', pump: '', uklon: '', cash: '', bolt: '', });
+function App() { const [values, setValues] = useState(Object.fromEntries(accounts.map(acc => [acc.name, ""])));
 
-const handleChange = (e, key) => { let value = e.target.value; value = value.replace(/[^0-9.]/g, ''); if (value.startsWith('0') && value.length > 1 && !value.startsWith('0.')) { value = value.replace(/^0+/, ''); } setBalances(prev => ({ ...prev, [key]: value })); };
+const handleChange = (e, name) => { const val = e.target.value; if (/^\d*.?\d{0,2}$/.test(val)) { setValues({ ...values, [name]: val }); } };
 
-const total = Object.values(balances).reduce((acc, val) => acc + (parseFloat(val) || 0), 0);
+const getTotal = () => { return Object.values(values) .map(val => parseFloat(val) || 0) .reduce((acc, num) => acc + num, 0) .toFixed(2); };
 
-return ( <div className="container"> <h1>Мій фінансовий план</h1> {sources.map(({ name, key, logo }) => ( <div className="input-group" key={key}> <img src={logo} alt={name} className={logo ${key}} /> <input type="text" value={balances[key]} onChange={(e) => handleChange(e, key)} className="amount-input" /> </div> ))} <h2>Загальна сума: {total.toFixed(2)} грн</h2> </div> ); }
+return ( <div className="container"> <h1>Мій фінансовий план</h1> {accounts.map(account => ( <div className="row" key={account.name}> <img src={process.env.PUBLIC_URL + "/logos/" + account.icon} alt={account.name} className="logo" /> <input type="text" inputMode="decimal" pattern="^\d*\.?\d{0,2}$" placeholder="" value={values[account.name]} onChange={(e) => handleChange(e, account.name)} /> </div> ))} <h2>Загальна сума: {getTotal()} грн</h2> </div> ); }
 
 export default App;
-
 
