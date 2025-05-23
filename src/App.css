@@ -1,6 +1,6 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #f5f5f5;
+  background-color: #f8f8f8;
   margin: 0;
   padding: 2rem;
 }
@@ -12,4 +12,21 @@ body {
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.logos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.logos img {
+  width: 80px;
+  height: auto;
+  padding: 0.5rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
 }
